@@ -3,7 +3,7 @@
 <suite name="AutoCompleteTestSuite" verbose="1">
   <test name="AutoCompleteTest">
     <classes>
-       <class name="testCases.TestAutoSearchComplete">
+       <class name="tests.TestAutoSearchComplete">
        </class>
     </classes>
   </test>

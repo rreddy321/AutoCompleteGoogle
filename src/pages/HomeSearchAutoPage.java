@@ -1,15 +1,17 @@
-package Pages;
+package pages;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
-import Pages.TestHome;
+import pages.Page;
 
-public class HomeSearchAutoPage extends TestHome {
+public class HomeSearchAutoPage extends Page {
 	
 	@FindBy(xpath="//input[@title='Search']")
 	public WebElement googleSearchAuto;
@@ -20,10 +22,27 @@ public class HomeSearchAutoPage extends TestHome {
      public List<WebElement> getGoogleSearchAutoList() {
          return googleSearchAutoList;
      }
-
-
+     
 	// Initializing the Page Objects:
 	public HomeSearchAutoPage() {
 		PageFactory.initElements(driver, this);
 	}
+	
+	public String googleTitle() {
+		return driver.getTitle();
+	}
+	
+	public boolean googleSearchBoxisPresent() {
+		try {
+	        driver.findElement(By.xpath("//input[@title='Search']"));
+	    } catch (NoSuchElementException e) {
+	        return false;
+	    }
+	    return true;
+	}
+	
+	public static void tearDown() {
+	driver.quit();
+	}
+	
 }
